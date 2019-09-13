@@ -10,10 +10,10 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.9.2",
     "babel-plugin-import": "^1.9.1",
-    "next": "latest",
+    "next": "^9.0.5",
     "null-loader": "2.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "license": "ISC"
 }
