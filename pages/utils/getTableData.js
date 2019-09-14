@@ -8,8 +8,12 @@ function dataReducer(state, action) {
   const { type, payload, details } = action;
   switch (type) {
     case "FETCH_INIT":
-      return { ...state };
+      return {
+        isLoading: true,
+        isError: false
+      };
     case "FETCH_SUCCESS":
+      console.log(payload);
       const { count, next, previous, results } = payload;
       return {
         isLoading: false,
@@ -32,22 +36,20 @@ function dataReducer(state, action) {
   }
 }
 
-export default function useFetchData(API) {
-  const [data, dispatch] = useReducer(dataReducer, {
-    isLoading: true,
-    isError: false,
-    data: []
-  });
+export default function useFetchData(initialURL) {
+  const [URL, setURL] = useState(initialURL);
+  const [data, dispatch] = useReducer(dataReducer, {});
 
   useEffect(() => {
     let didCancel = false;
     async function getData() {
+      dispatch({ type: "FETCH_INIT" });
       if (!didCancel) {
-        let result = await axios.get("https://pokeapi.co/api/v2/pokemon");
+        let result = await axios.get(URL);
         try {
           // console.log(result);
           let details = await getDetails(result);
-          dispatch({ type: "FETCH_SUCCESS", payload: result, details });
+          dispatch({ type: "FETCH_SUCCESS", payload: result.data, details });
         } catch (error) {
           console.log(error);
           dispatch({ type: "FETCH_FAILURE", payload: result.status });
@@ -71,12 +73,18 @@ export default function useFetchData(API) {
       return pokemon_details;
     }
 
-    getData();
+    if (URL !== "") {
+      getData();
+    }
 
     return () => {
       didCancel = true;
     };
-  }, []);
+  }, [URL]);
 
-  return [data];
+  function refecth(newURL) {
+    console.log(newURL);
+    setURL(newURL);
+  }
+  return [data, refecth];
 }
