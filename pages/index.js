@@ -13,6 +13,7 @@ import {
 } from "antd";
 
 import useFetchData from "./utils/getTableData";
+import ListPokemon from "./components/List-Pokemon";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -20,21 +21,20 @@ const Option = Select.Option;
 export default function App() {
   const [state] = useFetchData("https://pokeapi.co/api/v2/pokemon");
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   return (
-    <div style={{ marginTop: 100 }}>
+    <div style={{ marginTop: 50 }}>
       <Row gutter={16}>
-        <Col span={4}>
+        <Col
+          span={4}
+          style={{
+            borderRight: "1px solid red",
+            paddingLeft: 30,
+            paddingRight: 20
+          }}
+        >
           Filter Area
           <Form layout="horizontal">
-            <FormItem
-              label="Input Number"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
+            <FormItem label="Input Number">
               <InputNumber
                 size="large"
                 min={1}
@@ -46,27 +46,7 @@ export default function App() {
               <a href="#">Link</a>
             </FormItem>
 
-            <FormItem
-              label="Switch"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <Switch defaultChecked name="switch" />
-            </FormItem>
-
-            <FormItem
-              label="Slider"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <Slider defaultValue={70} />
-            </FormItem>
-
-            <FormItem
-              label="Select"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
+            <FormItem label="Select">
               <Select
                 size="large"
                 defaultValue="lucy"
@@ -82,17 +62,10 @@ export default function App() {
               </Select>
             </FormItem>
 
-            <FormItem
-              label="DatePicker"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
+            <FormItem label="DatePicker">
               <DatePicker name="startDate" />
             </FormItem>
-            <FormItem
-              style={{ marginTop: 48 }}
-              wrapperCol={{ span: 8, offset: 8 }}
-            >
+            <FormItem style={{ marginTop: 48 }}>
               <Button size="large" type="primary" htmlType="submit">
                 OK
               </Button>
@@ -103,7 +76,7 @@ export default function App() {
           </Form>
         </Col>
         <Col span={20}>
-          <Table />
+          <ListPokemon state={state} />
         </Col>
       </Row>
     </div>
