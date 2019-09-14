@@ -13,7 +13,7 @@ function dataReducer(state, action) {
         isError: false
       };
     case "FETCH_SUCCESS":
-      console.log(payload);
+      // console.log(payload);
       const { count, next, previous, results } = payload;
       return {
         isLoading: false,
@@ -83,7 +83,7 @@ export default function useFetchData(initialURL) {
   }, [URL]);
 
   function refecth(newURL) {
-    console.log(newURL);
+    // console.log(newURL);
     setURL(newURL);
   }
   return [data, refecth];
