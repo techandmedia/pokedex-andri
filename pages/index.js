@@ -1,5 +1,5 @@
 import { useEffect, useState, useReducer } from "react";
-import { Button, Icon, Row, Col } from "antd";
+import { Button, Icon, Row, Col, Modal } from "antd";
 
 import useFetchData from "./utils/getTableData";
 import { buttonsReducer } from "./utils/reducers";
