@@ -21,7 +21,7 @@ function dataReducer(state, action) {
         count,
         next,
         previous,
-        results,
+        // results,
         details
       };
     case "FETCH_FAILURE":
