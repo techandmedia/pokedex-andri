@@ -1,9 +1,9 @@
 import { useEffect, useState, useReducer } from "react";
 import { Button, Icon, Row, Col, Modal } from "antd";
 
-import useFetchData from "./utils/getTableData";
-import buttonsReducer from "./utils/reducers";
-import ListPokemon from "./components/List-Pokemon";
+import useFetchData from "../utils/getTableData";
+import buttonsReducer from "../utils/reducers";
+import ListPokemon from "../components/List-Pokemon";
 
 export default function App() {
   const [state, refetch] = useFetchData("https://pokeapi.co/api/v2/pokemon");
